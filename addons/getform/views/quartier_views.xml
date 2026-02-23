@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record model="ir.ui.view" id="view_kidole_form">
+        <field name="name">kidole.quartier.form</field>
+        <field name="model">kidole.quartier</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="ville_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_kidole_tree">
+        <field name="name">kidole.quartier.tree</field>
+        <field name="model">kidole.quartier</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/> 
+                <field name="ville_id"/>                 
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_kidole_quartier">
+        <field name="name">Kidole Quartier</field>
+        <field name="res_model">kidole.quartier</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_kidole_quartier" name="Quartier" parent="menu_kidole" action="action_kidole_quartier"/>
+</odoo>

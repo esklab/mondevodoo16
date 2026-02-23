@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+        <record id="ecole_parent_action" model="ir.actions.act_window">
+            <field name="name">Gestion Ecole</field>
+            <field name="res_model">ecole.parent</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+    
+        <record id="ecole_eleve_tree" model="ir.ui.view">
+            <field name="name">Parent</field>
+            <field name="model">ecole.parent</field>
+            <field name="arch" type="xml">
+                <tree string="Parent">
+                    <field name="name"/>
+                    <field name="adresse"/>
+                    <field name="telephone"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="ecole_eleve_form" model="ir.ui.view">
+            <field name="name">ecole.parent.form</field>
+            <field name="model">ecole.parent</field>
+            <field name="arch" type="xml">
+                <form string="Parent">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="adresse"/>
+                                <field name="telephone"/>
+                            </group>
+                            <group>
+                                <field name="email"/>
+                                <field name="etudiant_ids" eval="[(4, ref('ir.model'))]" />     
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <menuitem 
+            id="parent_menu" 
+            name="Parent" 
+            action="ecole_parent_action" 
+            parent="ecole_menu"
+        />
+    
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+        <record id="ecole_note_action" model="ir.actions.act_window">
+            <field name="name">Gestion Ecole</field>
+            <field name="res_model">ecole.notes</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+    
+        <record id="ecole_note_tree" model="ir.ui.view">
+            <field name="name">Notes</field>
+            <field name="model">ecole.notes</field>
+            <field name="arch" type="xml">
+                <tree string="Note">
+                    <field name="note"/>
+                    <field name="cours_id"/>
+                    <field name="etudiant_id"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="ecole_eleve_form" model="ir.ui.view">
+            <field name="name">ecole.notes.form</field>
+            <field name="model">ecole.notes</field>
+            <field name="arch" type="xml">
+                <form string="Etudiant">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="note"/>
+                                <field name="cours_id"/>
+                                <field name="etudiant_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <menuitem 
+        id="notes_menu" 
+        name="Notes" 
+        action="ecole_note_action" 
+        parent="ecole_menu"
+    />
+</odoo>

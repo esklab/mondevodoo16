@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="ecole_eleve_action" model="ir.actions.act_window">
+        <field name="name">Gestion des Eleves</field>
+        <field name="res_model">ecole.eleve</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="ecole_eleve_tree" model="ir.ui.view">
+        <field name="name">Eleve</field>
+        <field name="model">ecole.eleve</field>
+        <field name="arch" type="xml">
+            <tree string="Eleve">
+                <field name="name"/>
+                <field name="date_naissance"/>
+                <field name="age"/>
+                <field name="est_apt"/>
+                <field name="partner_id"/>
+                <field name="classe_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ecole_eleve_form" model="ir.ui.view">
+        <field name="name">ecole.eleve.form</field>
+        <field name="model">ecole.eleve</field>
+        <field name="arch" type="xml">
+            <form string="Eleve">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_naissance"/>
+                            <field name="age" readonly="1" /> <!-- Rendre le champ 'age' en lecture seule -->
+                            <field name="parent_id"/>
+                            <field name="classe_id"/>
+                        </group>
+                        <group>
+                            <field name="est_apt"/>
+                            <field name="photo" widget="image"/>
+                            <field name="partner_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="eleve_parent_action" model="ir.actions.act_window">
+        <field name="name">Parent d'Eleves</field>
+        <field name="res_model">eleve.parent</field>
+        <field name="view_mode">tree,form"</field>
+    </record>
+
+    <menuitem id="ecole_menu" name="Ecole" sequence="100"/>
+
+    <menuitem id="ecole_eleve_menu" name="Eleve" action="ecole_eleve_action" parent="ecole_menu" sequence="100"/>
+
+    <menuitem id="ecole_parent_menu" name="Parent" action="eleve_parent_action" parent="ecole_menu" sequence="100"/>
+
+</odoo>

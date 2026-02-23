@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+        <record id="ecole_classe_action" model="ir.actions.act_window">
+            <field name="name">Gestion Ecole</field>
+            <field name="res_model">ecole.classe</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+    
+        <record id="ecole_eleve_tree" model="ir.ui.view">
+            <field name="name">classe</field>
+            <field name="model">ecole.classe</field>
+            <field name="arch" type="xml">
+                <tree string="Classe">
+                    <field name="name"/>
+                    <field name="filiere"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="ecole_eleve_form" model="ir.ui.view">
+            <field name="name">ecole.classe.form</field>
+            <field name="model">ecole.classe</field>
+            <field name="arch" type="xml">
+                <form string="Etudiant">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="filiere"/>
+                                <field name="etudiant_ids" widget="many2many"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <menuitem 
+            id="classe_menu" 
+            name="Classe" 
+            action="ecole_classe_action" 
+            parent="ecole_menu"
+            sequence="20"
+        />    
+    
+</odoo>

@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_random_user_tree">
+            <field name="name">random.user.tree</field>
+            <field name="model">random.user</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_random_user_form">
+            <field name="name">random.user.form</field>
+            <field name="model">random.user</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Obtenir un utilisateur" type="object" class="oe_highlight" name="action_fetch_random_user"/>
+                    </header>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_random_user">
+            <field name="name">Random Users</field>
+            <field name="res_model">random.user</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_random_user" name="Random Users" sequence="10"/>
+        <menuitem id="menu_random_user_list" name="Liste des utilisateurs aléatoires" parent="menu_random_user" action="action_random_user"/>
+    </data>
+</odoo>

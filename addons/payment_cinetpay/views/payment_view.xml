@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payment_acquirer_form" model="ir.ui.view">
+        <field name="name">cinetpay Acquirer Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position='inside'>
+                <group attrs="{'invisible': [('code', '!=', 'cinetpay')]}">
+                    <field name="cinetpay_api_key" attrs="{'required':[('code', '=', 'cinetpay'), ('state', '!=', 'disabled')]}"/>
+                    <field name="cinetpay_site_id" attrs="{'required':[('code', '=', 'cinetpay'), ('state', '!=', 'disabled')]}"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

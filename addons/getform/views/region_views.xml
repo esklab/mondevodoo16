@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record model="ir.ui.view" id="view_kidole_form">
+        <field name="name">kidole.region.form</field>
+        <field name="model">kidole.region</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="pays_id"/> 
+                    <field name="villes"/> 
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_kidole_tree">
+        <field name="name">kidole.region.tree</field>
+        <field name="model">kidole.region</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/> 
+                <field name="pays_id"/>   
+                <field name="villes"/>                
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_kidole_region">
+        <field name="name">Region</field>
+        <field name="res_model">kidole.region</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_kidole_region" name="Region" parent="menu_kidole" action="action_kidole_region"/>
+</odoo>

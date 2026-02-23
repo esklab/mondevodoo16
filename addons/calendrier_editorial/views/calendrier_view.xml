@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="calendrier_edition_action" model="ir.actions.act_window">
+        <field name="name">Calendrier Editorial</field>
+        <field name="res_model">calendrier.edition</field>
+        <field name="view_mode">kanban,tree,form,graph,gantt</field>
+    </record>
+
+    <record id="calendrier_edition_tree" model="ir.ui.view">
+        <field name="name">Calendrier</field>
+        <field name="model">calendrier.edition</field>
+        <field name="arch" type="xml">
+            <tree string="Calendrier">
+                <field name="name"/>
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+                <field name="responsable_id"/>
+                <field name="steps"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="calendrier_edition_view_gantt" model="ir.ui.view">
+        <field name="name">calendrier_edition.view.gantt</field>
+        <field name="model">calendrier.edition</field>
+        <field name="arch" type="xml">
+            <gantt string="Gantt view " date_start="date_debut" date_stop="date_fin">
+                <field name="name"/>
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+            </gantt>
+        </field>
+    </record>
+
+    <record id="calendrier_edition_form" model="ir.ui.view">
+        <field name="name">calendrier.edition.form</field>
+        <field name="model">calendrier.edition</field>
+        <field name="arch" type="xml">
+            <form string="Calendrier">
+                <header>
+                    <field name="steps" widget="statusbar" options="{'clickable':'1'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                            <field name="montant"/>
+                        </group>
+                        <group>
+                            <field name="responsable_id" />
+                            <field name="projet_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Publications">
+                            <field name="publication_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="calendrier_parent_action" model="ir.actions.act_window">
+        <field name="name">Calendrier Editorial</field>
+        <field name="res_model">calendrier.edition</field>
+        <field name="view_mode">kanban,tree,form,graph,gantt</field>
+    </record>
+
+    <menuitem 
+        id="calendrier_editorial_menu" 
+        name="Calendrier_Editorial" 
+        sequence="10"
+    />
+
+    <menuitem 
+        id="calendrier_menu" 
+        name="Calendrier" 
+        action="calendrier_edition_action" 
+        parent="calendrier_editorial_menu" 
+        sequence="20"
+    />
+
+</odoo>

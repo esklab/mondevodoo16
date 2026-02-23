@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_jetform_tree">
+            <field name="name">jet.form.tree</field>
+            <field name="model">jet.form</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button string="Obtenir les Utilisateurs" type="object" class="oe_highlight" name="action_fetch_jetform"/>
+                    </header>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>                    
+                    <field name="address"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_jetform_form">
+            <field name="name">jet.form.form</field>
+            <field name="model">jet.form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Obtenir un utilisateur" type="object" class="oe_highlight" name="action_fetch_jetform"/>
+                    </header>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_jetform">
+            <field name="name">Jet Forms</field>
+            <field name="res_model">jet.form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_jetform" name="Jet Forms" sequence="10"/>
+        <menuitem id="menu_jetform_list" name="Liste des utilisateurs aléatoires" parent="menu_jetform" action="action_jetform"/>
+    </data>
+</odoo>

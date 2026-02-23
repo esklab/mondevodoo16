@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="ecole_etudiant_action" model="ir.actions.act_window">
+        <field name="name">Gestion Ecole</field>
+        <field name="res_model">ecole.etudiant</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="ecole_eleve_tree" model="ir.ui.view">
+        <field name="name">Etudiant</field>
+        <field name="model">ecole.etudiant</field>
+        <field name="arch" type="xml">
+            <tree string="Etudiant">
+                <field name="name"/>
+                <field name="prenom"/>
+                <field name="date_naissance"/>
+                <field name="adresse"/>
+                <field name="telephone"/>
+                <field name="classe_id"/>
+                <field name="parent_id" ref="ir.model"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ecole_eleve_form" model="ir.ui.view">
+        <field name="name">ecole.etudiant.form</field>
+        <field name="model">ecole.etudiant</field>
+        <field name="arch" type="xml">
+            <form string="Etudiant">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="prenom"/>
+                            <field name="date_naissance"/>
+                            <field name="adresse"/>
+                            <field name="telephone"/>
+                        </group>
+                        <group>
+                            <field name="classe_id"/>
+                            <field name="parent_id" ref="ir.model"/>
+                            <field name="cours_ids" widget="many2many"/>
+                            <field name="note_ids"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem 
+        id="ecole_menu" 
+        name="Geschool"
+    />
+
+    <menuitem 
+        id="etudiant_menu" 
+        name="Etudiant" 
+        action="ecole_etudiant_action" 
+        parent="ecole_menu"
+    />
+
+</odoo>

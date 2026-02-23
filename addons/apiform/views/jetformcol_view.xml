@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_ir_model_form_inherit" model="ir.ui.view">
+        <field name="name">ir.model.fields.form.inherit</field>
+        <field name="model">ir.model.fields</field>
+        <field name="inherit_id" ref="base.view_model_fields_form"/>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="api_data_mapping" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_jetform_column_tree" model="ir.ui.view">
+        <field name="name">ir.model.fields.tree</field>
+        <field name="model">ir.model.fields</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="api_data_mapping" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_jetform_column">
+        <field name="name">Map</field>
+        <field name="res_model">ir.model.fields</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_jetform_column" name="Configuration des Colonnes" parent="menu_jetform" action="action_jetform_column"/>
+</odoo>

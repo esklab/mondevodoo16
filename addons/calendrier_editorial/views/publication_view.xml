@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="calendrier_publication_action" model="ir.actions.act_window">
+        <field name="name">Publication</field>
+        <field name="res_model">calendrier.publication</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+    </record>
+
+    <record id="calendrier_publication_tree" model="ir.ui.view">
+        <field name="name">Publication</field>
+        <field name="model">calendrier.publication</field>
+        <field name="arch" type="xml">
+            <tree string="Publication">
+                <field name="name"/>
+                <field name="caption"/>
+                <field name="calendrier_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="calendrier_publication_form" model="ir.ui.view">
+        <field name="name">calendrier.publication.form</field>
+        <field name="model">calendrier.publication</field>
+        <field name="arch" type="xml">
+            <form string="Publication">
+                <header>
+                    <field name="status" widget="statusbar" options="{'clickable':'1'}" statusbar_visible="brouillon,en_cours,publié"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_calendar" type="object" class="oe_stat_button" icon="fa-calendar" string="Calendar"></button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="caption"/>
+                            <field name="calendrier_id"/>
+                            <field name="image" widget="image"/>
+                        </group>
+                        <group>
+                            <div>
+                                <field name="show_facebook_link" widget="boolean_switch"/>
+                                <field name="facebook_link" attrs="{'invisible': [('show_facebook_link', '=', False)]}"/>
+                                <span class="fa fa-facebook" placeholder="Lien Facebook" options="{'no_create_edit': True}" invisible="context.get('hide_facebook_link')"/>
+                            </div>
+                        
+                            <div>
+                                <field name="show_twitter_link" widget="boolean_switch"/>
+                                <field name="twitter_link" attrs="{'invisible': [('show_twitter_link', '=', False)]}"/>
+                                <span class="fa fa-twitter" placeholder="Lien Twitter" options="{'no_create_edit': True}" invisible="context.get('hide_twitter_link')"/>
+                            </div>
+                        
+                            <div>
+                                <field name="show_instagram_link" widget="boolean_switch"/>
+                                <field name="instagram_link" attrs="{'invisible': [('show_instagram_link', '=', False)]}"/>
+                                <span class="fa fa-instagram" placeholder="Lien Instagram" options="{'no_create_edit': True}" invisible="context.get('hide_instagram_link')"/>
+                            </div>
+                        </group>
+                                                
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem 
+        id="publication_menu" 
+        name="Publication" 
+        action="calendrier_publication_action" 
+        parent="calendrier_editorial_menu" 
+        sequence="20"
+    />
+
+</odoo>

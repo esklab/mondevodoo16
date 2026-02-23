@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kidole_pays,access.kidole.pays,model_kidole_pays,base.group_user,1,1,1,1,1
+access_kidole_region,access.kidole.region,model_kidole_region,base.group_user,1,1,1,1,1
+access_kidole_ville,access.kidole.ville,model_kidole_ville,base.group_user,1,1,1,1,1
+access_kidole_quartier,access.kidole.quartier,model_kidole_quartier,base.group_user,1,1,1,1,1

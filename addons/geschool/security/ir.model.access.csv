@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ecole_etudiant,access.ecole.etudiant,model_ecole_etudiant,base.group_user,1,1,1,1,1
+access_ecole_enseignant,access.ecole.enseignant,model_ecole_enseignant,base.group_user,1,1,1,1,1
+access_ecole_classe,access.ecole.classe,model_ecole_classe,base.group_user,1,1,1,1,1
+access_ecole_cours,access.ecole.cours,model_ecole_cours,base.group_user,1,1,1,1,1
+access_ecole_notes,access.ecole.notes,model_ecole_notes,base.group_user,1,1,1,1,1
+access_ecole_parent,access.ecole.parent,model_ecole_parent,base.group_user,1,1,1,1,1

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record model="ir.ui.view" id="view_kidole_tree">
+        <field name="name">kidole.pays.tree</field>
+        <field name="model">kidole.pays</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/> 
+                <field name="regions"/>                  
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_kidole_form">
+        <field name="name">kidole.pays.form</field>
+        <field name="model">kidole.pays</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="regions"/> 
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_kidole">
+        <field name="name">Kidole Pays</field>
+        <field name="res_model">kidole.pays</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_kidole" name="Kidole" sequence="10"/>
+    <menuitem id="menu_kidole_list" name="Pays" parent="menu_kidole" action="action_kidole"/>
+</odoo>

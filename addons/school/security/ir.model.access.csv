@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ecole_eleve,access.ecole.eleve,model_ecole_eleve,base.group_user,1,1,1,1,1
+access_eleve_parent,access.eleve.parent,model_eleve_parent,base.group_user,1,1,1,1,1
+access_eleve_classe,access.eleve.classe,model_eleve_classe,base.group_user,1,1,1,1,1

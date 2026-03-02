@@ -1,0 +1,98 @@
+<odoo>
+    <!-- Définition du format de papier en paysage -->
+    <record id="paperformat_landscape" model="report.paperformat">
+        <field name="name">A4 Landscape</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>  <!-- Augmenté pour l'en-tête -->
+        <field name="margin_bottom">20</field>  <!-- Augmenté pour le pied de page -->
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_spacing">10</field>  <!-- Espacement de l'en-tête -->
+        <field name="dpi">90</field>  <!-- Résolution pour un meilleur rendu -->
+    </record>
+
+    <!-- Définition de l'action de rapport -->
+    <record id="report_stock_report_wizard" model="ir.actions.report">
+        <field name="name">Stock Report Wizard</field>
+        <field name="model">stock.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">stock_report.report_stock_report_wizard_view</field>
+        <field name="report_file">stock_report.report_stock_report_wizard</field>
+        <field name="print_report_name">'Rapport de stock'</field>
+        <field name="binding_model_id" ref="model_stock_report_wizard"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_landscape"/>  <!-- Utilisation du format paysage -->
+    </record>
+
+    <template id="report_hospitalization_monthly">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Rapport d'Hospitalisation Annuel <t t-esc="data['year']"/></h2>
+                        
+                        <t t-foreach="data['monthly_data']" t-as="month_data">
+                            <h3 style="margin-top: 20px;">
+                                <t t-esc="month_data['month']"/> 
+                                <small>(<t t-esc="month_data['data']['count']"/> hospitalisations)</small>
+                            </h3>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <strong>Durée moyenne de séjour:</strong>
+                                <t t-esc="round(month_data['data']['total_stay_duration'] / month_data['data']['count'] if month_data['data']['count'] > 0 else 0, 2)"/> jours
+                            </div>
+                            
+                            <h4>Répartition des modes de sortie</h4>
+                            <ul>
+                                <t t-foreach="month_data['data']['outcomes'].items()" t-as="outcome">
+                                    <li>
+                                        <t t-esc="dict(doc._fields['outcome'].selection).get(outcome[0])"/>: 
+                                        <t t-esc="outcome[1]"/>
+                                    </li>
+                                </t>
+                            </ul>
+                            
+                            <h4>Actes chirurgicaux réalisés</h4>
+                            <ul>
+                                <t t-foreach="month_data['data']['surgeries'].items()" t-as="surgery">
+                                    <li><t t-esc="surgery[0]"/>: <t t-esc="surgery[1]"/></li>
+                                </t>
+                            </ul>
+                            
+                            <h4>Détail des patients</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Patient</th>
+                                        <th>Âge</th>
+                                        <th>Genre</th>
+                                        <th>Diagnostic</th>
+                                        <th>Durée séjour</th>
+                                        <th>Mode de sortie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="month_data['data']['patients']" t-as="patient">
+                                        <td><t t-esc="patient['name']"/></td>
+                                        <td><t t-esc="patient['age']"/></td>
+                                        <td><t t-esc="patient['gender']"/></td>
+                                        <td><t t-esc="patient['diagnosis']"/></td>
+                                        <td><t t-esc="patient['stay_duration']"/> jours</td>
+                                        <td><t t-esc="patient['outcome']"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr style="border-top: 1px solid #ddd;"/>
+                        </t>
+                        
+                        <div style="margin-top: 30px;">
+                            <h3>Total annuel: <t t-esc="data['total_hospitalizations']"/> hospitalisations</h3>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

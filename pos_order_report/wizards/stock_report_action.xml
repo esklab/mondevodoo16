@@ -1,0 +1,31 @@
+<odoo>
+    <!-- Vue formulaire pour le wizard -->
+    <record id="view_stock_report_wizard_form" model="ir.ui.view">
+        <field name="name">stock.report.wizard.form</field>
+        <field name="model">stock.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Générer Rapport de Stock">
+                <group>
+                    <field name="location_ids" string="Emplacement(s)" widget="many2many_tags" required="1"/>
+                    <field name="category_ids" string="Catégorie(s)" widget="many2many_tags" required="1"/>
+                    <field name="brand_ids" string="Marque(s)" widget="many2many_tags"/>
+                    <field name="date_start" string="Date de début"/>
+                    <field name="date_end" string="Date de fin"/>
+                </group>
+                <footer>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                    <button string="Générer" type="object" name="action_generate_report" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Lier la vue au wizard -->
+    <record id="stock_report_action_wizard" model="ir.actions.act_window">
+        <field name="name">Générer Rapport de Stock</field>
+        <field name="res_model">stock.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_stock_report_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
